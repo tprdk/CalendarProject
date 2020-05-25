@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">CalendarApp</string>
+    <string name="main_button_upcoming_events">UPCOMING EVENTS</string>
+    <string name="main_button_add_event">Add Event To Selected Date</string>
+    <string name="main_button_del_event">Delete Event From Selected Date</string>
+
+    <string name="add_event_time">Time</string>
+    <string name="add_event_start_date">Start Date</string>
+    <string name="add_event_start_time">Start Time</string>
+    <string name="add_event_end_time">End Time</string>
+    <string name="add_event_end_date">End Date</string>
+    <string name="add_event_title">Title</string>
+    <string name="add_event_repeat">Repeat</string>
+    <string name="add_event_alert">Alarm Times</string>
+    <string name="add_event_location">Location</string>
+    <string name="add_event_notes">Notes</string>
+    <string name="add_event_add_location">Add Location</string>
+    <string name="add_event_set_date">Set Date</string>
+    <string name="add_event_set_time">Set Time</string>
+    <string name="add_event_save">Save</string>
+
+    <string-array name="repeat_options">
+        <item>None</item>
+        <item>Every Day</item>
+        <item>Every Week</item>
+        <item>Every Month</item>
+        <item>Every Year</item>
+    </string-array>
+
+    <string-array name="theme">
+        <item>Light Mode</item>
+        <item>Dark Mode</item>
+    </string-array>
+
+    <string-array name="alarm">
+        <item>1 Day Ago</item>
+        <item>1 Hours Ago</item>
+        <item>30 Minutes Ago</item>
+        <item>15 Minutes Ago</item>
+    </string-array>
+
+
+    <string name="settings_reminder_sound">Set Reminder Sound</string>
+    <string name="settings_reminder_time">Default Reminder Time</string>
+    <string name="settings_reminder_repeat">Default Repeat Pattern</string>
+    <string name="settings_button_save">Save Changes</string>
+
+    <string name="title_activity_maps">Map</string>
+</resources>
