@@ -79,15 +79,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 Intent returnIntent = new Intent();
-                //if(flag){
+                if(flag){
                     returnIntent.putExtra("Longitude",curLocation.longitude);
                     returnIntent.putExtra("Latitude",curLocation.latitude);
                     returnIntent.putExtra("Location", markedLocation);
                     setResult(Activity.RESULT_OK,returnIntent);
                     Toast.makeText(MapsActivity.this, "Location is saved succesfully.", Toast.LENGTH_SHORT).show();
-                //}
-                //else
-                //    setResult(Activity.RESULT_CANCELED,returnIntent);
+                }
+                else
+                    setResult(Activity.RESULT_CANCELED,returnIntent);
                 finish();
             }
         });
