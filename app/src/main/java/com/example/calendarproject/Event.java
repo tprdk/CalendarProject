@@ -105,11 +105,7 @@ public class Event {
         this.notes = notes;
     }
 
-    public String getAdress() {
-        return adress;
-    }
+    public String getAdress() { return adress; }
 
-    public void setAdress(String adress) {
-        this.adress = adress;
-    }
+    public void setAdress(String adress) { this.adress = adress; }
 }

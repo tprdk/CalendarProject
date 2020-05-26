@@ -185,7 +185,7 @@
         android:layout_row="9"
         android:layout_column="1"
         android:layout_gravity="center"
-        android:layout_marginRight="44dp"
+        android:layout_marginRight="90dp"
         android:textColor="@color/colorText"
         android:text="@string/add_event_save"/>
 

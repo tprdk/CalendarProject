@@ -38,9 +38,7 @@ public class Defaults {
         this.defaultRepeatId = defaultRepeatId;
     }
 
-    public boolean getHasAlertBox() {
-        return hasAlertBox;
-    }
+    public boolean getHasAlertBox() { return hasAlertBox; }
 
     public void setHasAlertBox(boolean hasAlertBox) {
         this.hasAlertBox = hasAlertBox;

@@ -41,7 +41,6 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     private GoogleMap mMap;
     private final static int REQUEST_lOCATION = 0;
-    private final static int MY_PERMISSIONS_REQUEST_GET_LOCATION = 1000;
     private LatLng curLocation;
     private boolean flag = false;
     private boolean getLocationFlag = false;
@@ -80,15 +79,15 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
             @Override
             public void onClick(View v) {
                 Intent returnIntent = new Intent();
-                if(flag){
+                //if(flag){
                     returnIntent.putExtra("Longitude",curLocation.longitude);
                     returnIntent.putExtra("Latitude",curLocation.latitude);
                     returnIntent.putExtra("Location", markedLocation);
                     setResult(Activity.RESULT_OK,returnIntent);
                     Toast.makeText(MapsActivity.this, "Location is saved succesfully.", Toast.LENGTH_SHORT).show();
-                }
-                else
-                    setResult(Activity.RESULT_CANCELED,returnIntent);
+                //}
+                //else
+                //    setResult(Activity.RESULT_CANCELED,returnIntent);
                 finish();
             }
         });
@@ -125,12 +124,16 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                                     nowLocationLongitude = locationResult.getLocations().get(lastLocationIndex).getLongitude();
 
                                     LatLng currLocation = new LatLng(nowLocationLatitude, nowLocationLongitude);
-                                    mMap.addMarker(new MarkerOptions().position(currLocation).title("Marker in Your Location" + currLocation));
+                                    mMap.addMarker(new MarkerOptions().position(currLocation).title(findAdress(nowLocationLatitude, nowLocationLongitude)));
                                     mMap.moveCamera(CameraUpdateFactory.newLatLng(currLocation));
                                 }
                             }
                         }, Looper.myLooper());
 
+            }else{
+                LatLng currLocation = new LatLng(nowLocationLatitude, nowLocationLongitude);
+                mMap.addMarker(new MarkerOptions().position(currLocation).title(findAdress(nowLocationLatitude, nowLocationLongitude)));
+                mMap.moveCamera(CameraUpdateFactory.newLatLng(currLocation));
             }
         } else {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
@@ -163,6 +166,18 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
 
     }
 
+    public String findAdress(double latitude, double longitude){
+        Geocoder myLocation = new Geocoder(MapsActivity.this, Locale.getDefault());
+        List<Address> myList = null;
+        try {
+            myList = myLocation.getFromLocation(latitude,longitude, 1);       //Getting location name
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        Address address = (Address) myList.get(0);
+        String markedLocation = address.getAddressLine(0);
+        return markedLocation;
+    }
 
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {

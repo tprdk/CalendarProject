@@ -162,9 +162,11 @@ public class AddEvent extends AppCompatActivity implements TimePickerDialog.OnTi
         buttonSave.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                cancelAlarms();
-                setAlarms();
-                saveEvent();
+                if (checkFields()){
+                    cancelAlarms();
+                    setAlarms();
+                    saveEvent();
+                }
             }
         });
     }
@@ -231,6 +233,7 @@ public class AddEvent extends AppCompatActivity implements TimePickerDialog.OnTi
     }
 
     public void saveEvent(){
+
         Calendar cal = getDay(textViewStartDate, textViewStartTime);
         Calendar cal2 = getDay(textViewEndDate, textViewEndTime);
 
@@ -269,5 +272,24 @@ public class AddEvent extends AppCompatActivity implements TimePickerDialog.OnTi
         return cal;
     }
 
-
+    public boolean checkFields(){
+        boolean flag = true;
+        if(editTextTitle.getText().toString().trim().equals("") && flag){
+            Toast.makeText(this, "Title can not be empty.", Toast.LENGTH_SHORT).show();
+            flag = false;
+        }if(textViewStartDate.getText().toString().trim().equals(getString(R.string.add_event_start_date)) && flag){
+            Toast.makeText(this, "Start date must be selected.", Toast.LENGTH_SHORT).show();
+            flag = false;
+        }if(textViewEndDate.getText().toString().trim().equals(getString(R.string.add_event_end_date)) && flag){
+            Toast.makeText(this, "End date must be selected.", Toast.LENGTH_SHORT).show();
+            flag = false;
+        }if(textViewStartTime.getText().toString().trim().equals(getString(R.string.add_event_start_time)) && flag){
+            Toast.makeText(this, "Start time must be selected.", Toast.LENGTH_SHORT).show();
+            flag = false;
+        }if(textViewEndTime.getText().toString().trim().equals(getString(R.string.add_event_end_time)) && flag){
+            Toast.makeText(this, "End time must be selected.", Toast.LENGTH_SHORT).show();
+            flag = false;
+        }
+        return flag;
+    }
 }
