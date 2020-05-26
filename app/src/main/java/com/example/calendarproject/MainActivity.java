@@ -1,27 +1,27 @@
 package com.example.calendarproject;
 
 import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
+import android.view.View;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.app.AppCompatDelegate;
 
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import java.util.ArrayList;
-import java.util.Calendar;
-
 
 public class MainActivity extends AppCompatActivity {
 
     private ArrayList<CalendarDay> days;
     private ArrayList<Event> events;
     private MaterialCalendarView calendarView;
+    private FloatingActionButton floatingActionButton;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,8 +35,16 @@ public class MainActivity extends AppCompatActivity {
             finish();
         }
 
-        calendarView = findViewById(R.id.calendarView);
+        floatingActionButton = findViewById(R.id.button_change_mode);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, WeeklyMainActivity.class);
+                startActivity(intent);
+            }
+        });
 
+        calendarView = findViewById(R.id.calendarView);
         DecorateToday decorator = new DecorateToday();
         calendarView.addDecorator(decorator);
 

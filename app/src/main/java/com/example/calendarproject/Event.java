@@ -1,5 +1,7 @@
 package com.example.calendarproject;
 
+import android.location.Address;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -14,10 +16,11 @@ public class Event {
     private int repeatId;
     private int repeatCode;
     private String notes;
+    private String adress;
 
 
     public Event(String title, Calendar startDate, Calendar endDate, ArrayList<Alarm> alarms,
-                    double longitude, double latitude, int repeatId, int repeatCode,String notes) {
+                    double longitude, double latitude, int repeatId, int repeatCode,String notes, String address) {
         this.title = title;
         this.startDate = startDate;
         this.endDate = endDate;
@@ -27,6 +30,7 @@ public class Event {
         this.repeatId = repeatId;
         this.notes = notes;
         this.repeatCode = repeatCode;
+        this.adress = address;
     }
 
     public String getTitle() {
@@ -99,5 +103,13 @@ public class Event {
 
     public void setNotes(String notes) {
         this.notes = notes;
+    }
+
+    public String getAdress() {
+        return adress;
+    }
+
+    public void setAdress(String adress) {
+        this.adress = adress;
     }
 }

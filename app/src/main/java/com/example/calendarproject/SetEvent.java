@@ -126,6 +126,7 @@ public class SetEvent extends AppCompatActivity implements TimePickerDialog.OnTi
         textViewStartTime.setText(startHour + " : " + startMinute);
         textViewEndTime.setText(endHour + " : " + endMinute);
         editTextTitle.setText(event.getTitle());
+        textViewLocation.setText(event.getAdress());
         spinnerRepeat.setSelection(event.getRepeatId());
 
         activityText += "Title : " + event.getTitle();
@@ -134,8 +135,9 @@ public class SetEvent extends AppCompatActivity implements TimePickerDialog.OnTi
         activityText += "\nStart Time : " + startHour + " : " + startMinute ;
         activityText += "\nEnd Date : " + endDay + " / " + (endMonth + 1) + " / " + endYear ;
         activityText += "\nEnd Date : " + endHour + " : " + endMinute ;
+        activityText += "\nLocation : " + event.getAdress();
         if(event.getLatitude() != 0 || event.getLongitude() != 0)
-            activityText += "\nLocation : " + "http://maps.google.com/maps?saddr=" + event.getLatitude() + "," + event.getLongitude();
+            activityText += "\nFor opening on the Maps : " + "http://maps.google.com/maps?saddr=" + event.getLatitude() + "," + event.getLongitude();
     }
 
     private void setListeners(){
@@ -231,7 +233,9 @@ public class SetEvent extends AppCompatActivity implements TimePickerDialog.OnTi
             longitude = data.getDoubleExtra("Longitude", 10000);
             latitude = data.getDoubleExtra("Latitude", 100000);
             if(!(data.getDoubleExtra("Longitude", 10000) == 10000)){
-                textViewLocation.setText("Location Selected");
+                textViewLocation.setText(data.getStringExtra("Location"));
+            }else{
+                textViewLocation.setText("No Location");
             }
         }
     }
@@ -361,7 +365,9 @@ public class SetEvent extends AppCompatActivity implements TimePickerDialog.OnTi
         String notes = editTextNotes.getText().toString().trim();
         int repeatId = spinnerRepeat.getSelectedItemPosition();
 
-        Event event = new Event(editTextTitle.getText().toString(), cal , cal2, alarms, longitude, latitude, repeatId ,repeatCode , notes);
+        String location = textViewLocation.getText().toString().trim();
+
+        Event event = new Event(editTextTitle.getText().toString(), cal , cal2, alarms, longitude, latitude, repeatId ,repeatCode , notes, location);
         ArrayList<Event> events = SharedPref.loadEventList(SetEvent.this);
         events.set(index, event);
         SharedPref.saveEventList(SetEvent.this, events);

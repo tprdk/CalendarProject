@@ -31,6 +31,7 @@ public class EventList extends AppCompatActivity {
             @Override
             public void onItemClick(int position) {
                 recreate = true;
+                Toast.makeText(EventList.this, "" + position, Toast.LENGTH_SHORT).show();
                 Intent setEventIntent = new Intent(EventList.this, SetEvent.class);
                 setEventIntent.putExtra("Position", position);
                 startActivity(setEventIntent);

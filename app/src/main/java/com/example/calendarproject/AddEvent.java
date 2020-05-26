@@ -176,7 +176,9 @@ public class AddEvent extends AppCompatActivity implements TimePickerDialog.OnTi
             longitude = data.getDoubleExtra("Longitude", 10000);
             latitude = data.getDoubleExtra("Latitude", 100000);
             if(!(data.getDoubleExtra("Longitude", 10000) == 10000)){
-                textViewLocation.setText("Location Selected");
+                textViewLocation.setText(data.getStringExtra("Location"));
+            }else{
+                textViewLocation.setText("No Location");
             }
         }
     }
@@ -232,12 +234,14 @@ public class AddEvent extends AppCompatActivity implements TimePickerDialog.OnTi
         Calendar cal = getDay(textViewStartDate, textViewStartTime);
         Calendar cal2 = getDay(textViewEndDate, textViewEndTime);
 
+        String location = textViewLocation.getText().toString().trim();
         String notes = editTextNotes.getText().toString().trim();
         int repeatId = spinnerRepeat.getSelectedItemPosition();
 
         int repeatCode = SharedPref.getCode(AddEvent.this);
 
-        Event event = new Event(editTextTitle.getText().toString(), cal , cal2, alarms, longitude, latitude, repeatId ,repeatCode , notes);
+        Event event = new Event(editTextTitle.getText().toString(), cal , cal2, alarms, longitude, latitude, repeatId ,repeatCode , notes
+        ,location);
         ArrayList<Event> events = SharedPref.loadEventList(AddEvent.this);
         events.add(event);
         SharedPref.saveEventList(AddEvent.this, events);

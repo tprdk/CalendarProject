@@ -26,6 +26,7 @@ public class AlertDialogActivity extends Activity
                     public void onClick(DialogInterface dialog, int id)
                     {
                         dialog.cancel();
+                        finish();
                     }
                 });
         AlertDialog alert = builder.create();

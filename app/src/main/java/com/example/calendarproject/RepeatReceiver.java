@@ -62,7 +62,7 @@ public class RepeatReceiver extends BroadcastReceiver {
             alarm.setTime(c);
         }
         Event newEvent = new Event(event.getTitle(), start, end, alarms, event.getLongitude(), event.getLatitude()
-                                    ,event.getRepeatId(), event.getRepeatCode(), event.getNotes());
+                                    ,event.getRepeatId(), event.getRepeatCode(), event.getNotes(), event.getAdress());
 
         String title = newEvent.getTitle();
         String content = newEvent.getNotes();
