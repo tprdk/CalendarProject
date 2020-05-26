@@ -75,6 +75,7 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
                     returnIntent.putExtra("Longitude",curLocation.longitude);
                     returnIntent.putExtra("Latitude",curLocation.latitude);
                     setResult(Activity.RESULT_OK,returnIntent);
+                    Toast.makeText(MapsActivity.this, "Location is saved succesfully.", Toast.LENGTH_SHORT).show();
                 }
                 else
                     setResult(Activity.RESULT_CANCELED,returnIntent);

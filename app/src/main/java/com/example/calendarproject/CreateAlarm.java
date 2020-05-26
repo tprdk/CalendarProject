@@ -173,10 +173,9 @@ public class CreateAlarm extends AppCompatActivity implements TimePickerDialog.O
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(CreateAlarm.this, "Şu" +getIntent().getIntExtra("Position", 0)
-                                + " Silindi",Toast.LENGTH_SHORT).show();
                         alarmsStr.remove(position);
                         arrayAdapter.notifyDataSetChanged();
+                        Toast.makeText(CreateAlarm.this, "Alarm is deleted successfully", Toast.LENGTH_SHORT).show();
                     }
                 })
                 .setNegativeButton("No",null)
@@ -220,11 +219,9 @@ public class CreateAlarm extends AppCompatActivity implements TimePickerDialog.O
         while(flag) {
             recreateAlarms();
             SharedPref.saveAlarmTimes(CreateAlarm.this, alarms);
-            Log.d("Mesaj" , "saved");
-            Log.d("Mesaj" , "size = " + SharedPref.getAlarmList(CreateAlarm.this).size());
             flag = false;
         }
-        Toast.makeText(CreateAlarm.this ,"Data saved", Toast.LENGTH_LONG).show();
+        Toast.makeText(CreateAlarm.this ,"Alarms are setted succesfully.", Toast.LENGTH_LONG).show();
     }
 
 }

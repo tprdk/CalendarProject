@@ -145,7 +145,7 @@ public class SharedPref {
         Defaults defaults = gsonDefault.fromJson(jsonDefault, type);
         if (defaults == null)
         {
-            defaults = new Defaults(0, 0, 0);
+            defaults = new Defaults(0, 0, 0, false);
         }
         return defaults;
     }

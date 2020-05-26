@@ -59,6 +59,8 @@
             </intent-filter>
         </activity>
 
+        <activity android:name=".AlertDialogActivity" android:theme="@style/Theme.AppCompat.Dialog.Alert"/>
+
         <receiver android:name=".AlarmReceiver" />
         <receiver android:name=".RepeatReceiver" />
 

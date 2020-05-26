@@ -5,11 +5,13 @@ public class Defaults {
     private int defaultThemeId;
     private int defaultAlarmId;
     private int defaultRepeatId;
+    private boolean hasAlertBox;
 
-    public Defaults(int defaultThemeId, int defaultAlarmId, int defaultRepeatId) {
+    public Defaults(int defaultThemeId, int defaultAlarmId, int defaultRepeatId, boolean hasAlertBox) {
         this.defaultThemeId = defaultThemeId;
         this.defaultAlarmId = defaultAlarmId;
         this.defaultRepeatId = defaultRepeatId;
+        this.hasAlertBox = hasAlertBox;
     }
 
     public int getDefaultThemeId() {
@@ -34,5 +36,13 @@ public class Defaults {
 
     public void setDefaultRepeatId(int defaultRepeatId) {
         this.defaultRepeatId = defaultRepeatId;
+    }
+
+    public boolean getHasAlertBox() {
+        return hasAlertBox;
+    }
+
+    public void setHasAlertBox(boolean hasAlertBox) {
+        this.hasAlertBox = hasAlertBox;
     }
 }

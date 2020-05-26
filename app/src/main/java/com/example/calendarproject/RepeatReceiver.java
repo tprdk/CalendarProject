@@ -5,6 +5,8 @@ import android.content.Context;
 import android.content.Intent;
 import android.util.Log;
 
+import com.prolificinteractive.materialcalendarview.CalendarDay;
+
 import java.util.ArrayList;
 import java.util.Calendar;
 
@@ -15,11 +17,8 @@ public class RepeatReceiver extends BroadcastReceiver {
         int repeatId = intent.getIntExtra("RepeatPattern", 0);
         int repeatCode = intent.getIntExtra("RepeatCode", -1);
 
-        Log.d("Event" , "onReceive repeatPattern = " + repeatId );
-        Log.d("Event" , "onReceive repeatCode = " + repeatCode );
         Calendar calendar;
         Event event;
-
 
         switch (repeatId){
             case 0:          // not repeating
@@ -82,7 +81,10 @@ public class RepeatReceiver extends BroadcastReceiver {
                 flag = true;
             }
         }
+
         if(flag){
+            CalendarDay calendarDay = CalendarDay.today();
+            SharedPref.addWillDeleteDecorate(context, calendarDay.from(events.get(index).getStartDate()));
             events.remove(index);
         }
 

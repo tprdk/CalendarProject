@@ -30,8 +30,8 @@ public class Settings extends AppCompatActivity {
 
     private Button save;
     private TextView alarmSound;
-    private Spinner spinnerTheme, spinnerRepeat, spinnerAlarm;
-    private ArrayAdapter<CharSequence> themeAdapter, repeatAdapter, alarmAdapter;
+    private Spinner spinnerTheme, spinnerRepeat, spinnerAlarm, spinnerNotification;
+    private ArrayAdapter<CharSequence> themeAdapter, repeatAdapter, alarmAdapter, notificationAdapter;
     private Defaults defaults;
 
     @Override
@@ -75,6 +75,15 @@ public class Settings extends AppCompatActivity {
         repeatAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinnerRepeat.setAdapter(repeatAdapter);
         spinnerRepeat.setSelection(defaults.getDefaultRepeatId());
+
+        spinnerNotification = findViewById(R.id.spinner_default_notification);
+        notificationAdapter = ArrayAdapter.createFromResource(this, R.array.notification_options, android.R.layout.simple_spinner_item);
+        notificationAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        spinnerNotification.setAdapter(notificationAdapter);
+        if (defaults.getHasAlertBox())
+            spinnerNotification.setSelection(1);
+        else
+            spinnerNotification.setSelection(0);
 
         save = findViewById(R.id.button_save_settings);
     }
@@ -126,8 +135,12 @@ public class Settings extends AppCompatActivity {
     }
 
     protected void saveData() {
+        boolean notificationDefault = false;
+        if(spinnerNotification.getSelectedItemPosition() == 1)
+            notificationDefault = true;
+
         Defaults defaultsNew = new Defaults(spinnerTheme.getSelectedItemPosition(),
-                spinnerAlarm.getSelectedItemPosition(), spinnerRepeat.getSelectedItemPosition());
+                spinnerAlarm.getSelectedItemPosition(), spinnerRepeat.getSelectedItemPosition(), notificationDefault);
         SharedPref.saveDefaults(Settings.this, defaultsNew);
         if(spinnerTheme.getSelectedItemPosition() != defaults.getDefaultThemeId()){
             if(spinnerTheme.getSelectedItemPosition() == 0){
@@ -140,7 +153,7 @@ public class Settings extends AppCompatActivity {
                 finish();
             }
         }
-        Toast.makeText(Settings.this, "All changes saved", Toast.LENGTH_SHORT).show();
+        Toast.makeText(Settings.this, "All changes saved successfully", Toast.LENGTH_SHORT).show();
         finish();
     }
 }

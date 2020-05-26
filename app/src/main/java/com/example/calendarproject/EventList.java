@@ -34,7 +34,6 @@ public class EventList extends AppCompatActivity {
                 Intent setEventIntent = new Intent(EventList.this, SetEvent.class);
                 setEventIntent.putExtra("Position", position);
                 startActivity(setEventIntent);
-                Toast.makeText(EventList.this, "Pos = " + position , Toast.LENGTH_LONG).show();
             }
         });
 

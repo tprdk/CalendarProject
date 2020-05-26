@@ -14,7 +14,7 @@ import androidx.appcompat.app.AppCompatDelegate;
 import com.prolificinteractive.materialcalendarview.CalendarDay;
 import com.prolificinteractive.materialcalendarview.MaterialCalendarView;
 import java.util.ArrayList;
-
+import java.util.Calendar;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         Defaults defaults = SharedPref.getDefaults(MainActivity.this);
-        Log.d("Mode", AppCompatDelegate.getDefaultNightMode() + " ");
+
         if(defaults.getDefaultThemeId() == 1 && AppCompatDelegate.getDefaultNightMode() != AppCompatDelegate.MODE_NIGHT_YES) {
             AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_YES);
             startActivity(new Intent(MainActivity.this, MainActivity.class));
@@ -37,7 +37,7 @@ public class MainActivity extends AppCompatActivity {
 
         calendarView = findViewById(R.id.calendarView);
 
-        DecorateToday decorator = new DecorateToday(Color.GRAY);
+        DecorateToday decorator = new DecorateToday();
         calendarView.addDecorator(decorator);
 
     }
@@ -51,9 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
         CalendarDay calendarDay = CalendarDay.today();
         for(Event event : events){
-            Log.d("Date", "before day = " + calendarDay.getDay() + " month = " + calendarDay.getMonth() + " year = " + calendarDay.getYear());
-            days.add(calendarDay.from(event.getStartDate()));
-            Log.d("Date", "after day = " + calendarDay.getDay() + " month = " + calendarDay.getMonth() + " year = " + calendarDay.getYear());
+            if(event.getStartDate().getTime() != calendarDay.getDate())
+                days.add(calendarDay.from(event.getStartDate()));
         }
 
         DecorateEvent addEventDecorate = new DecorateEvent(this, days, DecorateEvent.BOOL_DRAW);

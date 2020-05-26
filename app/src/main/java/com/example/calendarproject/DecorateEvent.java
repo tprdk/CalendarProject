@@ -1,7 +1,9 @@
 package com.example.calendarproject;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
+import android.text.style.ForegroundColorSpan;
 
 import androidx.core.content.ContextCompat;
 
@@ -23,7 +25,7 @@ public class DecorateEvent implements DayViewDecorator {
         this.dates = dates;
         this.context = context;
         this.BOOL_OPT = BOOL_OPT;
-    }
+}
 
     @Override
     public boolean shouldDecorate(CalendarDay day) {

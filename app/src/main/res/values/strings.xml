@@ -39,6 +39,11 @@
         <item>15 Minutes Ago</item>
     </string-array>
 
+    <string-array name="notification_options">
+        <item>Just Notification</item>
+        <item>Notification and AlertDialog</item>
+    </string-array>
+
 
     <string name="settings_reminder_sound">Set Reminder Sound</string>
     <string name="settings_reminder_time">Default Reminder Time</string>

@@ -243,6 +243,8 @@ public class AddEvent extends AppCompatActivity implements TimePickerDialog.OnTi
         SharedPref.saveEventList(AddEvent.this, events);
 
         RepeatEventFeatures.startRepeat(AddEvent.this, event.getEndDate(), repeatId, repeatCode);
+        Toast.makeText(AddEvent.this, "Event is created successfully.", Toast.LENGTH_SHORT).show();
+        finish();
     }
 
     public Calendar getDay(TextView date, TextView time){

@@ -11,7 +11,6 @@ import java.util.Calendar;
 public class RepeatEventFeatures {
 
     public static void startRepeat(Context context, Calendar calendar, int repeatPattern, int repeatCode){
-        Log.d("Event" , "repeatCode = " + repeatCode );
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, RepeatReceiver.class);
         intent.putExtra("RepeatPattern", repeatPattern);
@@ -21,7 +20,6 @@ public class RepeatEventFeatures {
     }
 
     public static void cancelRepeat(Context context, int repeatCode){
-        Log.d("Event" , "cancel id = " + repeatCode );
         AlarmManager alarmManager = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, RepeatReceiver.class);
         PendingIntent pendingIntent = PendingIntent.getBroadcast(context, repeatCode, intent, 0);

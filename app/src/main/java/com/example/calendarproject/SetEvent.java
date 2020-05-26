@@ -192,7 +192,6 @@ public class SetEvent extends AppCompatActivity implements TimePickerDialog.OnTi
             @Override
             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                 String selected = parent.getItemAtPosition(position).toString();
-                Toast.makeText(parent.getContext(), selected, Toast.LENGTH_LONG).show();
             }
 
             @Override
@@ -299,10 +298,8 @@ public class SetEvent extends AppCompatActivity implements TimePickerDialog.OnTi
                 .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        Toast.makeText(SetEvent.this, "Şu" +getIntent().getIntExtra("Position", 0)
-                                + " Silindi",Toast.LENGTH_SHORT).show();
                         SharedPref.deleteEvent(SetEvent.this, events, index);
-
+                        Toast.makeText(SetEvent.this, "Event deleted successfully.", Toast.LENGTH_SHORT).show();
                         CalendarDay calendarDay = CalendarDay.today();
                         SharedPref.addWillDeleteDecorate(SetEvent.this,calendarDay.from(event.getStartDate()));
                         finish();
